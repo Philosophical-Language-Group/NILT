@@ -3,14 +3,14 @@
   :resource-paths #{"html"}
 
   :dependencies '[[org.clojure/clojure "1.9.0"]
-                  [org.clojure/clojurescript "1.9.946"]
-                  [adzerk/boot-cljs "2.1.4"]
+                  [org.clojure/clojurescript "1.10.439"]
+                  [adzerk/boot-cljs "2.1.5"]
                   [pandeiro/boot-http "0.8.3"]
-                  [adzerk/boot-reload "0.5.2"]
-                  [adzerk/boot-cljs-repl "0.3.3"]
-                  [com.cemerick/piggieback "0.2.1" :scope "test"]     ;; needed by bREPL
-                  [weasel "0.7.0" :scope "test"]                      ;; needed by bREPL
-                  [org.clojure/tools.nrepl "0.2.12"]
+                  [adzerk/boot-reload "0.6.0"]
+                  [adzerk/boot-cljs-repl "0.4.0"]
+                  [cider/piggieback "0.3.9" :scope "test"]  ;; needed by bREPL
+                  [weasel "0.7.0" :scope "test"]            ;; needed by bREPL
+                  [nrepl "0.4.5"]
                   [instaparse "1.4.9"]])
 
 (require '[adzerk.boot-cljs :refer [cljs]]
