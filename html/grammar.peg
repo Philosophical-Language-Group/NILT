@@ -69,6 +69,7 @@ c = #"bcçčdḑfghjklmnňprsštţvwxyzżž'"
 V-invalid = v+
 C-invalid = c+
 empty-invalid = ""
+TODO = #".*"
 
 Cv = ["'"] | "h"
 Vv = #"[aeiouë][iu]|[iu][öoea]|[eo]a"
@@ -89,8 +90,8 @@ Ca = !((Cm | DR-PRA-case-alt-indicator | PR-root-designation-indicator) !c) c+
 VxC = main-series-VxC c+
 Vc = main-series-Vc
 Cv-incorp = "hl" | "hr" | "hm" | "hn"
-Vf =
-Cx =
-V1 =
+Vf = TODO
+Cx = TODO
+V1 = TODO
 
-*)
+Vi = <Vr>

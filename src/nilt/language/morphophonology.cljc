@@ -116,13 +116,17 @@
 
 
 (defn make-Ca-table [geminate?]
-  (make-affix-table
-   [:perspective :extension :affiliation :configuration]
-   (for [persp [:m :p :n :a]
-         exten [:del :prx :icp :atv :gra :dpl]
-         affil [:csl :aso :var :coa]
-         confg [:uni :dpx :dct :agg :seg :cpn :coh :cst :mlt]]
-     (get-valid-Ca-values persp exten affil confg geminate?))))
+  (let [persp-values [:m :p :n :a]
+        exten-values [:del :prx :icp :atv :gra :dpl]
+        affil-values [:csl :aso :var :coa]
+        confg-values [:uni :dpx :dct :agg :seg :cpn :coh :cst :mlt]]
+    (make-affix-table
+     [persp-values exten-values affil-values confg-values]
+     (for [persp persp-values
+           exten exten-values
+           affil affil-values
+           confg confg-values]
+       (get-valid-Ca-values persp exten affil confg geminate?)))))
 
 
 (def affixes
