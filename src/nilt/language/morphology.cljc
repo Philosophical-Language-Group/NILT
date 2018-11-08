@@ -153,7 +153,14 @@
     :equ "Equative"
     :sur "Surpassive"
     :spl "Superlative"
-    :spq "Superequative"}
+    :spq "Superequative"
+    :max "Maximal"}
+
+   :level-type
+   ;; These should remain lowercase and be appended to the gloss for Level when printed.
+   {:r "Relative"
+    :a "Absolute"}
+
 
    :aspect
    {:rtr "Retrospective"
@@ -205,6 +212,11 @@
     :mnf "Manifestive"
     :ich "Incohative"}
 
+   :stem
+   {:stem-1 "Stem 1"
+    :stem-2 "Stem 2"
+    :stem-3 "Stem 3"}
+
    :mood
    {:fac "Factual"
     :sub "Subjunctive"
@@ -246,6 +258,25 @@
     :cst "Composite"
     :mlt "Multiform"}
 
+   :suffix-type
+   {:t1 "Type 1"
+    :t2 "Type 2"
+    :t3 "Type 3"
+    :t4 "Type 4"
+    :t5 "Type 5"
+    :t6 "Type 6"}
+
+   :suffix-degree
+   {:d1 "Degree 1"
+    :d2 "Degree 2"
+    :d3 "Degree 3"
+    :d4 "Degree 4"
+    :d5 "Degree 5"
+    :d6 "Degree 6"
+    :d7 "Degree 7"
+    :d8 "Degree 8"
+    :d9 "Degree 9"}
+
    :case (apply merge (vals cases))
 
    :designation
@@ -257,21 +288,21 @@
     :pth "Parenthetical"
     :cog "Cogitant"
     :exm "Exemplificative"
-    :ipr "Impressionistic"}})
+    :ipr "Impressionistic"
+    :math "Mathematical"}
 
-
-(def pra-referents
- ;; Note that, unlike those listed above, these keywords are case-sensitive
- ;; The hyphen at the start of each symbol is only present because symbols cannot start with a number
- {:_1m "monadic speaker"
-  :_2m "monadic addressee"
-  :_2p "polyadic addressee"
-  :ma "monadic animate 3rd party"
-  :pa "polyadic animate 3rd party"
-  :mi "monadic inanimate 3rd party"
-  :pi "polyadic inanimate 3rd party"
-  :IPa "impersonal animate"
-  :IPi "impersonal inanimate"
-  :Obv "obviative"
-  :Col "Collective"
-  :Abt "Abstract"})
+   :referent
+   ;; Note that, unlike those listed above, these keywords are case-sensitive.
+   ;; The underscore at the start of some symbols is only present because symbols cannot start with a number.
+   {:_1m "monadic speaker"
+    :_2m "monadic addressee"
+    :_2p "polyadic addressee"
+    :ma "monadic animate 3rd party"
+    :pa "polyadic animate 3rd party"
+    :mi "monadic inanimate 3rd party"
+    :pi "polyadic inanimate 3rd party"
+    :IPa "impersonal animate"
+    :IPi "impersonal inanimate"
+    :Obv "obviative"
+    :Col "Collective"
+    :Abt "Abstract"}})

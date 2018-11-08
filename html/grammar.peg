@@ -1,5 +1,96 @@
-S = AB*
-AB = A (B / C)
-A = 'a'+
-B = 'b'+
-C = 'c'+
+S = (A | B)*
+A = #'[aë]'
+B = 'b'
+C = 'a'+
+
+v = #"[aeiouâëöü]"
+c = #"[bcçčdḑfghjklmnňprsštţvwxyzżž']"
+
+(* Ca = !(#"[cč][mn]?|([lrmn])\1?|'?[wy]" !c) <c>+ !c *)
+
+Ca-test = Ca "a"?
+
+Cm = #"[lrmn]|ll|rr|mm|nn"
+
+DR-PRA-case-alt-indicator = #"[cč][nm]"
+PR-root-designation-indicator = #"[cč]"
+
+(* Formatives *)
+
+formative = simple-formative | complex-formative
+
+simple-formative = [simple-formative-I simple-formative-II]
+                   [simple-formative-III]
+                   [simple-formative-IV]
+                   formative-core
+
+complex-formative = complex-formative-I complex-formative-II
+                    complex-formative-III complex-formative-IV
+                    formative-core
+
+(* Slots *)
+
+formative-core = formative-V formative-VI
+                 [formative-VII formative-VIII]
+                 formative-IX formative-X
+                 {formative-XI}
+
+simple-formative-I = Cv
+simple-formative-II = (Vk | Vv) / V-invalid
+simple-formative-III = (Vs | Vp | Vl) / V-invalid
+simple-formative-IV = ("'w" | "'y") (Va / V-invalid)
+
+complex-formative-I = Cv-incorp
+complex-formative-II = (Vf / V-invalid) ["'"]
+complex-formative-III = Cx
+complex-formative-IV = Vi / V-invalid
+
+formative-V = Cr
+formative-VI = Vr / V-invalid
+formative-VII = Cm
+formative-VIII = (Vk | Vs | Vp | Vv | Vl) / V-invalid
+formative-IX = Ca / C-invalid
+formative-X = VxC / V-invalid C-invalid
+formative-XI = (Vc | "ë") / V-invalid
+
+(* Affixes *)
+
+v = #"aeiouâëöü"
+c = #"bcçčdḑfghjklmnňprsštţvwxyzżž'"
+
+(* <main-series-no-shwa> = #"[aeouiüöâ]|[aeouë]i|[ioea]u|i[aeoö]|[aeoö]ì|ëu|u[öoea]|[öoea]ù|[ae]o|o[ae]|ea|ö[ea]|[ea]ö" *)
+(* <main-series-no-shwa> = #"[aeouiüöâ]|[aeiouëö][iìuù]|[iu][aeoö]|[ae][oö]|[oö][ae]|ea" *)
+<main-series-no-shwa> = #"(?!ae|ë)[aeouiâëöü][aeiìouùö]?|ë[iu]"
+<main-series-VxC> = "ë" / main-series-no-shwa
+<main-series-Vc> = "ae" / main-series-no-shwa
+
+(* Throwaway affixes to give better errors (e.g. "error on simple formative
+   slot VIII: XYZ" instead of just "unexpected value: XYZ") *)
+V-invalid = v+
+C-invalid = c+
+empty-invalid = ""
+
+Cv = ["'"] | "h"
+Vv = #"[aeiouë][iu]|[iu][öoea]|[eo]a"
+Vk = #"[aeouiüöâë]|ae"
+Vs = #"w[aeouiüöâ]"
+Vp = #"y[aeouiüöâ]"
+Vl = #"[wy]([aeiouë][iu])"
+Va = main-series-Vc
+Cr = c+
+(* Vr = #"[aeiouëö][aiìuù]?'?|[iu][aeiou]|[âü]|ae|[ae][oö]|[oö]e|" *)
+Vr = #"[aeiouâëöü][aeiìouùö]?'?"
+Cm = #"[lrmn]|ll|rr|mm|nn"
+
+(* It is much easier to just discount invalid Ca values than write a
+   regex/parser rule for all the valid forms *)
+Ca = !((Cm | DR-PRA-case-alt-indicator | PR-root-designation-indicator) !c) c+
+
+VxC = main-series-VxC c+
+Vc = main-series-Vc
+Cv-incorp = "hl" | "hr" | "hm" | "hn"
+Vf =
+Cx =
+V1 =
+
+*)
