@@ -6,6 +6,7 @@
                   [org.clojure/clojurescript "1.10.439"]
                   [adzerk/boot-cljs "2.1.5"]
                   [pandeiro/boot-http "0.8.3"]
+                  [reagent "0.8.1"]
                   [adzerk/boot-reload "0.6.0"]
                   [adzerk/boot-cljs-repl "0.4.0"]
                   [adzerk/boot-test "1.2.0" :scope "test"]
@@ -28,7 +29,7 @@
   (comp
     (serve :dir "target")
     (watch)
-    (reload)
+    (reload :on-jsload 'nilt.ui.main/init!)
     (cljs-repl)
     (cljs)
     (build)))
