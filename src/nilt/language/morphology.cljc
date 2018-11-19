@@ -185,12 +185,12 @@
     [[:cnf "Confirmative"]
      [:inf "Inferential"]
      [:itu "Intuitive"]
-     [:sbj "Subjective"]
+     [:sbj "Revelatory"]
      [:hsy "Hearsay"]
      [:usp "Unspecified"]
      [:dir "Directive"]
-     [:irg "Interrogative"]
-     [:pot "Potentiative"]])
+     [:pot "Potentiative"]
+     [:irg "Interrogative"]])
 
    :sanction
    (make-ordered-lookup
@@ -251,12 +251,12 @@
      [:atp "Anticipatory"]
      [:rsm "Resumptive"]
      [:css "Cessative"]
-     [:rcs "Recessative"]
      [:pau "Pausal"]
      [:rgr "Regressive"]
      [:pcl "Preclusive"]
      [:cnt "Continuative"]
      [:ics "Incessative"]
+     [:rcs "Summative"]
      [:irp "Interruptive"]
      [:pmp "Preemptive"]
      [:clm "Climactic"]
