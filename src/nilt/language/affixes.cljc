@@ -1,4 +1,4 @@
-(ns nilt.language.morphophonology)
+(ns nilt.language.affixes)
 
 
 (defn multi-invert-map
