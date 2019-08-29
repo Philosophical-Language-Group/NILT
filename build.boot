@@ -2,18 +2,18 @@
   :source-paths #{"src" "test"}
   :resource-paths #{"html"}
 
-  :dependencies '[[org.clojure/clojure "1.9.0"]
-                  [org.clojure/clojurescript "1.10.439"]
+  :dependencies '[[org.clojure/clojure "1.10.0"]
+                  [org.clojure/clojurescript "1.10.520"]
                   [adzerk/boot-cljs "2.1.5"]
                   [pandeiro/boot-http "0.8.3"]
                   [reagent "0.8.1"]
                   [adzerk/boot-reload "0.6.0"]
                   [adzerk/boot-cljs-repl "0.4.0"]
                   [adzerk/boot-test "1.2.0" :scope "test"]
-                  [cider/piggieback "0.3.9" :scope "test"]  ;; needed by bREPL
+                  [cider/piggieback "0.4.1" :scope "test"]  ;; needed by bREPL
                   [weasel "0.7.0" :scope "test"]            ;; needed by bREPL
-                  [nrepl "0.4.5"]
-                  [instaparse "1.4.9"]])
+                  [nrepl "0.6.0"]
+                  [instaparse "1.4.10"]])
 
 (require '[adzerk.boot-cljs :refer [cljs]]
          '[pandeiro.boot-http :refer [serve]]
