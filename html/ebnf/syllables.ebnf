@@ -1,0 +1,61 @@
+word = ([syllabic-consonant] initial-cluster | [<"'">])
+       vowel-seq (intervocalic-cluster vowel-seq)*
+       [final-cluster]
+
+(*
+*** CONSONANTS
+ *)
+
+(* Maybe someday I'll code in the actual phonotactics, but for now we just need
+   to be able to distinguish syllabic consonants from clusters. *)
+initial-cluster = (* Phonotaxis v0.4, rule 3.2.7. *)
+                  #"[mn][lrwyř]"
+                  (* Phonotaxis v0.4, rule 3.2.8. *)
+                | #"[lr][wy]"
+                  (* Allow all other forms that don't begin with a liquid or
+                     nasal. *)
+                | #"(?![lmnňr])[bcčdḑfghjklļmnňprřsštţvwxyzżž]+"
+
+(* Allow all consonants, but only allow a glottal stop at the beginning, and do
+   not allow an empty string or a lone glottal stop. *)
+intervocalic-cluster = #"'?[bcčdḑfghjklļmnňprřsštţvwxyzżž]+"
+
+(* Allow all consonants, but only allow a glottal stop at the beginning, and do
+   not allow an empty string. (Do allow a lone glottal stop.) *)
+final-cluster = "'" | #"'?[bcčdḑfghjklļmnňprřsštţvwxyzżž]+"
+
+(* For syllabic consonants, match anything that isn't a valid initial cluster.
+   *)
+<syllabic-consonant> = !(initial-cluster vowel-seq) (unstressed-syllabic-consonant | stressed-syllabic-consonant)
+
+unstressed-syllabic-consonant = #"[lmnňr]"
+(* There's no official romanization yet for stressed syllabic 'l' and 'ň', so
+   I'm using 'ł' and 'ñ' respectively. *)
+stressed-syllabic-consonant = #"[łḿnñŕ]"
+
+(*
+*** VOWELS
+ *)
+
+<vowel-seq> = vowel
+            | diphthong
+            | implicit-disyllabic-pair
+            | explicit-disyllabic-pair
+
+<vowel> = unstressed-vowel | stressed-vowel
+
+unstressed-vowel = #"[aeiouàèìòùäëöü]"
+stressed-vowel = #"[áéíóúâêôû]"
+
+(* I can't find a list of diphthongs in TNIL, so I'll just assume that they're
+   the same as in Ithkuil (AGOI Ch. 1). *)
+<diphthong> = unstressed-diphthong | stressed-diphthong
+unstressed-diphthong = #"[aeouëö]i|[aeioëö]u"
+stressed-diphthong = #"[áéóúêô]i|[áéíóêô]u"
+
+<explicit-disyllabic-pair> = &#"[aeouëöáéóúêô][ìí]|[aeiouëöáéóúêô][ùú]" vowel explicit-disyllabic
+<explicit-disyllabic> = unstressed-explicit-disyllabic | stressed-explicit-disyllabic
+unstressed-explicit-disyllabic = #"[ìù]"
+stressed-explicit-disyllabic = #"[íú]"
+
+<implicit-disyllabic-pair> = !diphthong !explicit-disyllabic-pair vowel vowel
