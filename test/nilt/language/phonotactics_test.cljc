@@ -4,36 +4,36 @@
 
 (deftest test-split-syllables
   ;; Vowel-only
-  (is (= (phonotax/split-syllables "a")
-         [[nil nil nil nil]
-          [:vowel false "a" nil]]))
-  (is (= (phonotax/split-syllables "è")
-         [[nil nil nil nil]
-          [:vowel false "è" nil]]))
-  (is (= (phonotax/split-syllables "ie")
-         [[nil nil nil nil]
+  (is (= [[nil nil nil nil]
+          [:vowel false "a" nil]]
+         (phonotax/split-syllables "a")))
+  (is (= [[nil nil nil nil]
+          [:vowel false "è" nil]]
+         (phonotax/split-syllables "è")))
+  (is (= [[nil nil nil nil]
           [:vowel false "i" nil]
-          [:vowel false "e" nil]]))
-  (is (= (phonotax/split-syllables "ei")
-         [[nil nil nil nil]
-          [:diphthong false "ei" nil]]))
-  (is (= (phonotax/split-syllables "í")
-         [[nil nil nil nil]
-          [:vowel true "í" nil]]))
+          [:vowel false "e" nil]]
+         (phonotax/split-syllables "ie")))
+  (is (= [[nil nil nil nil]
+          [:diphthong false "ei" nil]]
+         (phonotax/split-syllables "ei")))
+  (is (= [[nil nil nil nil]
+          [:vowel true "í" nil]]
+         (phonotax/split-syllables "í")))
   ;; CVCVC with diphthong
-  (is (= (phonotax/split-syllables "šleitörk")
-         [[nil nil nil "šl"]
+  (is (= [[nil nil nil "šl"]
           [:diphthong false "ei" "t"]
-          [:vowel false "ö" "rk"]]))
+          [:vowel false "ö" "rk"]]
+         (phonotax/split-syllables "šleitörk")))
   ;; Many syllables
-  (is (= (phonotax/split-syllables "mraiköìtéulìa")
-         [[nil nil nil "mr"]
+  (is (= [[nil nil nil "mr"]
           [:diphthong false "ai" "k"]
           [:vowel false "ö" nil]
           [:explicit-disyllabic false "ì" "t"]
           [:diphthong true "éu" "l"]
           [:vowel false "ì" nil]
-          [:vowel false "a" nil]]))
+          [:vowel false "a" nil]]
+         (phonotax/split-syllables "mraiköìtéulìa")))
   ;; Word-initial syllabic consonant (from Phonotaxis v0.4 PDF)
   (is (= [[nil nil nil nil]
           [:syllabic-consonant false "m" "b"]
